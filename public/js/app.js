@@ -3,8 +3,14 @@ var name = getQueryVariable('name') || 'Yo soy tu padre';
 var room = getQueryVariable('room');
 var listMessages = $('.messages');
 
+$('.room-title').text(room);
+
 socket.on('connect', function(){
 	console.log("Connected to socket.io server");
+	socket.emit('joinRoom', {
+		name: name,
+		room: room
+	});
 });
 
 socket.on('message', function(message){
