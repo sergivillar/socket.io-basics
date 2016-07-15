@@ -7,3 +7,16 @@ socket.on('connect', function(){
 socket.on('message', function(message){
 	console.log(message);
 });
+
+var form = $('#message-form');
+var message = form.find('input[name=message]');
+
+form.on('submit', function(evt){
+	evt.preventDefault();
+
+	socket.emit('message', {
+		text: message.val()
+	});
+
+	message.val('');
+});
