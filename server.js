@@ -12,13 +12,10 @@ io.on('connection', function(socket) {
     socket.on('message', function(message) {
         console.log("Message received: " + message.text);
 
-        // io.emit Lo envia a todo el mundo incluido el emisor
+        // Lo envia a todo el mundo incluido el emisor
+        io.emit('message', message);	
         // Lo envia a todo el mundo exlcuido el emisor
-        socket.broadcast.emit('message', message.text);
-
-        socket.emit('message', {
-            text: 'Welcome to the chat application!'
-        });
+        // socket.broadcast.emit('message', message);	
     });
 
     socket.emit('message', {

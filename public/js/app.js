@@ -1,11 +1,12 @@
 var socket = io();
+var listMessages = $('.messages');
 
 socket.on('connect', function(){
 	console.log("Connected to socket.io server");
 });
 
 socket.on('message', function(message){
-	console.log(message);
+	listMessages.append('<p>' + message.text + '</p>')
 });
 
 var form = $('#message-form');
